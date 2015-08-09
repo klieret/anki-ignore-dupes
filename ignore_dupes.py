@@ -8,8 +8,14 @@ def expressionDupe(col,exp):
 	card which does not belong to one of the decks from noDupeDecks.
 	Otherwise returns False"""
 
-	noDupeDecks = ["SOURCES::japanese_kanji_system","SOURCES::Japanisch im Sauseschritt source", "SOURCES::RTK2_Public_source"]
+	# TODO: look for duplicates in only one or only some decks
+	# to be used by cbc Import
+	# FIXME: multiple decks return 
+	
+	yesDupeDecks=["VOCAB::vocab_new", "VOCAB::vocab_saikin"]
+	noDupeDecks = ["SOURCES::japanese_kanji_system","SOURCES::Japanisch im Sauseschritt source", "SOURCES::RTK2_Public_source", "VOCAB::vocabular_main", "VOCAB::vocab_system","KANJI::koohii","KANJI::koohii_reverse","KANJI::readings","KANJI::rtk2_split"]
 	noDupeDeckIds = [col.decks.id(deck) for deck in noDupeDecks]
+	yesDupeDeckIds= [col.decks.id(deck) for deck in yesDupeDecks]
 	
 	csum = fieldChecksum(exp)
 	# get all note ids with matching checksums
@@ -23,15 +29,32 @@ def expressionDupe(col,exp):
 			# then clearly there are no duplicates
 			return False
 		# If Expression matches and deck id not in noDupeDeckIds it's a reall duplicate 
-		if stripHTMLMedia(splitFields(flds[0])[0]) == stripHTMLMedia(exp) and did[0] not in noDupeDeckIds:
+		if len(did)>=2:
+			print(did)
+			try:
+				print("More than one deck id for %s, that's strange" % exp)
+			except:
+				pass
+		if stripHTMLMedia(splitFields(flds[0])[0]) == stripHTMLMedia(exp) and did[0] in yesDupeDeckIds and did[0] not in noDupeDeckIds:
+			# get deck from nid:
+			deckName=""	
+			for i,g in col.decks.decks.items():
+				if int(i)==int(did[0]):
+					deckName=g['name']
+					break
+			try:
+				print("%s is duplicate from deck %s" % (exp,deckName))
+			
+			except:
+				pass
 			return True
-
+	
 	return False
 
 def ignoreDupes(self):
 	"1 if first is empty; 2 if first is a duplicate, False otherwise."
 	
-	noDupeDecks = ["SOURCES::japanese_kanji_system","SOURCES::Japanisch im Sauseschritt source", "SOURCES::RTK2_Public_source"]
+	noDupeDecks = ["SOURCES::japanese_kanji_system","SOURCES::Japanisch im Sauseschritt source", "SOURCES::RTK2_Public_source", "VOCAB::vocab_system"]
 	noDupeDeckIds = [self.col.decks.id(deck) for deck in noDupeDecks]
 	
 	val = self.fields[0]
