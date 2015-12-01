@@ -3,6 +3,10 @@
 from anki.notes import Note
 from anki.utils import fieldChecksum, splitFields, stripHTMLMedia
 
+def deck_condition(deck1, deck2):
+	""" """
+	
+
 def expressionDupe(col,exp):
 	""" Returns True, if exp was already used as question on a
 	card which does not belong to one of the decks from noDupeDecks.
