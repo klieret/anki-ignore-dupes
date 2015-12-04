@@ -16,6 +16,7 @@ def dname_from_did(deck_id):
     """ Return the deck id for the deck with the name $deck_name """
     return mw.col.decks.get(deck_id)["name"]
 
+
 def ignore_dupes(self):
     """We will override Anki's Note.dupeOrEmpty function with this function,
     i.e. self is a Note object.
@@ -39,17 +40,17 @@ def ignore_dupes(self):
 
     # own deck ids
     dids1 = self.col.db.list("select did from cards where nid = ?", self.id)
-    if dids1 == []:
+    if not dids1:
         dids1 = [self.col.conf['curDeck']]
 
-    if nids == []:
+    if not nids:
         logger.debug("No matching checksums.")
 
     for nid in nids:
 
         # get the field values of note with note id $nid
         flds = self.col.db.list("select flds from notes where id = ?", nid)
-        if flds == []:
+        if not flds:
             # note with no fields
             logger.debug("No fields.")
             return False
@@ -57,7 +58,7 @@ def ignore_dupes(self):
         # get the deck ids of all the cards of the note with id $nid
         # (one note can have multiple cards in different decks)
         dids2 = self.col.db.list("select did from cards where nid = ?", nid)
-        if dids2 == []:
+        if not dids2:
             # we didn't find any cards with matching checksum
             logger.debug("No cards with matching checksum.")
             return False

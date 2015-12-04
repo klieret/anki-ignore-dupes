@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-def ignore_my_setup(deck1, deck2):
+def ignore_ch4noyu(deck1, deck2):
     """ Setup I'm using. """
 
     if "SOURCES" in deck2:
@@ -11,6 +11,7 @@ def ignore_my_setup(deck1, deck2):
     if not same_group(deck1, deck2):
         return True     # ignore
 
+
 def ignore_same_deck(deck1, deck2):
     """ Ignores duplicates from different decks. """
 
@@ -18,6 +19,7 @@ def ignore_same_deck(deck1, deck2):
         return False    # flag
     else:
         return True     # ignore
+
 
 def ignore_some_decks(deck1, deck2):
     """ Returns all duplicates from deck2 in a certain list of decks"""
@@ -43,7 +45,6 @@ def flag_all(deck1, deck2):
     """ Setting ignore_duplicates to this function
     will cause Anki to flag all duplicates (ignore no duplicates). """
     return False    # flag
-
 
 
 def same_group(deck1, deck2):
