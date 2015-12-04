@@ -12,5 +12,5 @@ def ignore_duplicates(deck1, deck2):
 
     return False
 
-ignore_duplicates = ignore_duplicates1
+ignore_duplicates = ignore_ch4noyu
 
