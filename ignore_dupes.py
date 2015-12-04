@@ -31,9 +31,11 @@ def expressionDupe(col,exp):
 		# If Expression matches and deck id not in noDupeDeckIds it's a reall duplicate 
 		if len(did)>=2:
 			print(did)
+			# todo!
 			try:
 				print("More than one deck id for %s, that's strange" % exp)
 			except:
+				print("Can't print!")
 				pass
 		if stripHTMLMedia(splitFields(flds[0])[0]) == stripHTMLMedia(exp) and did[0] in yesDupeDeckIds and did[0] not in noDupeDeckIds:
 			# get deck from nid:
@@ -42,15 +44,19 @@ def expressionDupe(col,exp):
 				if int(i)==int(did[0]):
 					deckName=g['name']
 					break
+			# todo!
 			try:
 				print("%s is duplicate from deck %s" % (exp,deckName))
 			
 			except:
+				print("Can't print!")
 				pass
+			print("Duplicate!")				
 			return True
 	
 	return False
 
+# Override function
 def ignoreDupes(self):
 	"1 if first is empty; 2 if first is a duplicate, False otherwise."
 	
