@@ -9,4 +9,4 @@ Note.dupeOrEmpty = ignore_dupes
 
 import log
 
-print "Info: Plugin 'ignore_dupes' active. Some duplicated card wanrings may be surpressed."
+print "Info: Plugin 'ignore_dupes' active. Some duplicated card warnings may be surpressed."
