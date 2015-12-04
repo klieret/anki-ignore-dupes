@@ -3,6 +3,7 @@
 
 from examples import *
 
+
 def ignore_duplicates(deck1, deck2):
     """ Having 2 cards from deck1 (original deck) and deck2 
     (deck of a note which normally would be flagged as a duplicate) 
