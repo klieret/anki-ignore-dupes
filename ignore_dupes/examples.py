@@ -11,18 +11,18 @@ def ignore_duplicates1(deck1, deck2):
                      "VOCAB::vocab_system"]
     
     if deck2 in ignore_decks:
-        return False
+        return True     # ignore
     else:
-        return True
+        return False    # flag
 
 
 def ignore_all_duplicates(deck1, deck2):
     """ Setting ignore_duplicates to this function
     will cause Anki to completely ignore all duplicates. """
-    return True
+    return True     # ignore
 
 
 def flag_all_duplicates(deck1, deck2):
     """ Setting ignore_duplicates to this function
     will cause Anki to flag all duplicates (ignore no duplicates). """
-    return False
+    return False    # flag
