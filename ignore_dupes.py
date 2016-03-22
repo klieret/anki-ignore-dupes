@@ -2,5 +2,5 @@
 # -*- coding: utf-8 -*-
 
 
-import ignore_dupes.__init__
+from ignore_dupes import *
 
