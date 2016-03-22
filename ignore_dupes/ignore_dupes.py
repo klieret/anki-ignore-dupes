@@ -13,9 +13,10 @@ def expression_dupe(expression):
     :type expression: str
     """
     # wrapper around _ignore_dupes
-    return _ignore_dupes(self_expression=expression)
+    return bool(_ignore_dupes(self_expression=expression))
 
 
+# todo: docstring
 def ignore_dupes(note):
     # wrapper around _ignore_dupes
     return _ignore_dupes(self_note=note)
@@ -81,7 +82,7 @@ def _ignore_dupes(self_note=None, self_expression=None):
                                         self_note_id or 0, self_note_mid)
     else:
         # don't apply any criteria for note id and mid model id, just seach for the checksum.
-        other_note_ids = mw.col.db.list("select id from notes where csum = ?", csum, self_note_id or 0, self_note_mid)
+        other_note_ids = mw.col.db.list("select id from notes where csum = ?", csum)
 
     if not other_note_ids:
         logger.debug("Did not find any notes with the same key field checksum as self.")
