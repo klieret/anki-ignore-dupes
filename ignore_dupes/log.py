@@ -30,4 +30,5 @@ logger.addHandler(fh)
 logger.addHandler(sh_error)
 logger.addHandler(sh_info)
 
+logger.info("Plugin 'ignore_dupes' active. Some duplicated card warnings may be surpressed.")
 logger.debug("Log will be saved at {}".format(os.path.abspath(log_path)))
