@@ -16,7 +16,6 @@ def expression_dupe(expression):
     # if word contains multiple expressions, separated by ',', '・' or similar
     # we check for each of them
     delims = [u',', u';', u'、', u'；', u'\n', u'・']
-    print(split_multiple_delims(expression, delims))
     for expr in split_multiple_delims(expression, delims):
         if not _ignore_dupes(self_expression=expr):
             return False
@@ -27,7 +26,8 @@ def ignore_dupes(note):
     # wrapper around _ignore_dupes
     return _ignore_dupes(self_note=note)
 
-
+# todo: reduce number of logging messages
+# todo: sometimes the deck from mw.col.config or something is just not right.
 # parts of this should be moved to expression_dupe
 def _ignore_dupes(self_note=None, self_expression=None):
     """We will override Anki's Note.dupeOrEmpty function with this function,
@@ -84,11 +84,14 @@ def _ignore_dupes(self_note=None, self_expression=None):
         # 1. whose key field has the same check sum
         # 2. whose note id is different (i.e. we're excluding self_note)
         # 3. whose model id is the same
+        logger.debug("Selecting with mid")
         other_note_ids = mw.col.db.list("select id from notes where csum = ? and id != ? and mid = ?", csum,
                                         self_note_id or 0, self_note_mid)
     else:
         # don't apply any criteria for note id and mid model id, just seach for the checksum.
+        logger.debug("Selecting without mid")
         other_note_ids = mw.col.db.list("select id from notes where csum = ?", csum)
+    logger.debug("other_note_ids: {}".format(other_note_ids))
 
     if not other_note_ids:
         logger.debug("Did not find any notes with the same key field checksum as self.")
@@ -100,6 +103,7 @@ def _ignore_dupes(self_note=None, self_expression=None):
     if not self_deck_ids:
         # use the deck id of the currently active deck
         self_deck_ids = [mw.col.conf['curDeck']]
+    logger.debug("self_deck_ids {}".format(self_deck_ids))
 
     # 5. Loop over the other_note_ids
 
@@ -114,6 +118,7 @@ def _ignore_dupes(self_note=None, self_expression=None):
         # 5b. Get the deck ids of all the cards of the note with other_note_id
         # (one note can have multiple cards in different decks)
         other_deck_ids = mw.col.db.list("select did from cards where nid = ?", other_note_id)
+        logger.debug("other_deck_ids {}".format(other_deck_ids))
         if not other_deck_ids:
             logger.debug("No cards with matching checksum.")
             return False
@@ -136,4 +141,4 @@ def _ignore_dupes(self_note=None, self_expression=None):
                     logger.debug("Duplicate! deck1 = '%s', deck2 = '%s' ==> Flagged." % (self_name, other_name))
                     return 2
 
-        return False
+    return False
