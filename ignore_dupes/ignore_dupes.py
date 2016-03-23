@@ -15,7 +15,8 @@ def expression_dupe(expression):
     # wrapper around _ignore_dupes
     # if word contains multiple expressions, separated by ',', '・' or similar
     # we check for each of them
-    delims = [',', ';', '、', '；', '\n', '・']
+    delims = [u',', u';', u'、', u'；', u'\n', u'・']
+    print(split_multiple_delims(expression, delims))
     for expr in split_multiple_delims(expression, delims):
         if not _ignore_dupes(self_expression=expr):
             return False
