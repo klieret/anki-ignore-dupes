@@ -5,7 +5,7 @@ from config import ignore_duplicates
 from anki.utils import fieldChecksum, splitFields, stripHTMLMedia
 from aqt import mw
 from log import logger
-from util import dname_from_did
+from util import dname_from_did, split_multiple_delims
 
 
 def expression_dupe(expression):
@@ -13,8 +13,13 @@ def expression_dupe(expression):
     :type expression: str
     """
     # wrapper around _ignore_dupes
-    return bool(_ignore_dupes(self_expression=expression))
-
+    # if word contains multiple expressions, separated by ',', '・' or similar
+    # we check for each of them
+    delims = [',', ';', '、', '；', '\n', '・']
+    for expr in split_multiple_delims(expression, delims):
+        if not _ignore_dupes(self_expression=expr):
+            return False
+    return True
 
 # todo: docstring
 def ignore_dupes(note):
