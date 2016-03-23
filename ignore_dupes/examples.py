@@ -8,9 +8,8 @@ def ignore_ch4noyu(deck1, deck2):
     if "SOURCES" in deck2:
         return True     # ignore
 
-    if not same_group(deck1, deck2):
+    if not deck1 == deck2:
         return True     # ignore
-
 
 def ignore_same_deck(deck1, deck2):
     """ Ignores duplicates from different decks. """
