@@ -21,10 +21,12 @@ def expression_dupe(expression):
             return False
     return True
 
+
 # todo: docstring
 def ignore_dupes(note):
     # wrapper around _ignore_dupes
     return _ignore_dupes(self_note=note)
+
 
 # todo: reduce number of logging messages
 # todo: sometimes the deck from mw.col.config or something is just not right.
@@ -55,7 +57,7 @@ def _ignore_dupes(self_note=None, self_expression=None):
         return False
 
     if self_note:
-        self_search_value = self_note.fields[0]
+        self_search_value = self_note.fields[0]  # might be None!
         self_note_id = self_note.id
         self_note_mid = self_note.mid
     else:
@@ -70,7 +72,8 @@ def _ignore_dupes(self_note=None, self_expression=None):
     # 2. Check if we have a key field/Expression
 
     logger.debug("key field = '%s'" % self_search_value)
-    if not self_search_value.strip():
+    if not self_search_value or isinstance(self_search_value, str) and not self_search_value.strip():
+        # note that self_note.fields[0] might be None!
         logger.debug("Key field empty.")
         return 1
 
