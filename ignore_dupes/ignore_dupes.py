@@ -17,9 +17,10 @@ def expression_dupe(expression):
     # we check for each of them
     delims = [u',', u';', u'、', u'；', u'\n', u'・']
     for expr in split_multiple_delims(expression, delims):
-        if not _ignore_dupes(self_expression=expr):
-            return False
-    return True
+        if _ignore_dupes(self_expression=expr) == 2:
+            # duplicate!
+            return True
+    return False  # nice note
 
 
 # todo: docstring
