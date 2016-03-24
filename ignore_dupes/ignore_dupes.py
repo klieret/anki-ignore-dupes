@@ -50,8 +50,9 @@ def _ignore_dupes(self_note=None, self_expression=None):
 
     # 1. Default values & Co.
 
-    if not self_note and not self_expression:
-        raise ValueError
+    if self_note is None and self_expression is None:
+        # maybe we should raise a ValueError instead, but well...
+        return False
 
     if self_note:
         self_search_value = self_note.fields[0]
