@@ -5,10 +5,10 @@ from config import ignore_duplicates
 from anki.utils import fieldChecksum, splitFields, stripHTMLMedia
 from aqt import mw
 from log import logger
-from util import dname_from_did, split_multiple_delims
+from util import dname_from_did, did_from_dname, split_multiple_delims
 
 
-def expression_dupe(expression):
+def expression_dupe(expression, deck=None):
     """ Checks if there is already a card with the Expresssion $expression.
     :type expression: str
     """
@@ -17,7 +17,7 @@ def expression_dupe(expression):
     # we check for each of them
     delims = [u',', u';', u'、', u'；', u'\n', u'・']
     for expr in split_multiple_delims(expression, delims):
-        if _ignore_dupes(self_expression=expr) == 2:
+        if _ignore_dupes(self_expression=expr, self_deck=None) == 2:
             # duplicate!
             return True
     return False  # nice note
@@ -32,13 +32,15 @@ def ignore_dupes(note):
 # todo: reduce number of logging messages
 # todo: sometimes the deck from mw.col.config or something is just not right.
 # parts of this should be moved to expression_dupe
-def _ignore_dupes(self_note=None, self_expression=None):
+def _ignore_dupes(self_note=None, self_expression=None, self_deck=None):
     """We will override Anki's Note.dupeOrEmpty function with this function,
     This method is meant to return
         1 		if self.fields[0] is empty
         2 		if the note is a duplicate
         False 	elsewise (i.e. "nice" note).
     :param self_note: Anki note object.
+    :param self_expression: String. Will overwrite note.fields[0]
+    :param self_deck: Deck the note belongs to.
     """
 
     # Nomenclature: We compare the note given as argument to other notes.
@@ -89,12 +91,10 @@ def _ignore_dupes(self_note=None, self_expression=None):
         # 1. whose key field has the same check sum
         # 2. whose note id is different (i.e. we're excluding self_note)
         # 3. whose model id is the same
-        logger.debug("Selecting with mid")
         other_note_ids = mw.col.db.list("select id from notes where csum = ? and id != ? and mid = ?", csum,
                                         self_note_id or 0, self_note_mid)
     else:
         # don't apply any criteria for note id and mid model id, just seach for the checksum.
-        logger.debug("Selecting without mid")
         other_note_ids = mw.col.db.list("select id from notes where csum = ?", csum)
     logger.debug("other_note_ids: {}".format(other_note_ids))
 
@@ -102,12 +102,20 @@ def _ignore_dupes(self_note=None, self_expression=None):
         logger.debug("Did not find any notes with the same key field checksum as self.")
         return False
 
-    # 4. get the deck ids from the decks the self card belonged to
+    # 4. get the self_deck ids from the decks the self card belonged to
 
-    self_deck_ids = mw.col.db.list("select did from cards where nid = ?", self_note_id)
+    if self_deck:
+        # use the deck supplied as argument
+        self_deck_ids = did_from_dname(self_deck)
+    else:
+        # try to get the deck from anki
+        self_deck_ids = mw.col.db.list("select did from cards where nid = ?", self_note_id)
+
     if not self_deck_ids:
-        # use the deck id of the currently active deck
+        # We tried to get the denk name from anki, but the result was None.
+        # use the self_deck id of the currently active self_deck
         self_deck_ids = [mw.col.conf['curDeck']]
+
     logger.debug("self_deck_ids {}".format(self_deck_ids))
 
     # 5. Loop over the other_note_ids
@@ -120,7 +128,7 @@ def _ignore_dupes(self_note=None, self_expression=None):
             logger.debug("No fields.")
             return False
 
-        # 5b. Get the deck ids of all the cards of the note with other_note_id
+        # 5b. Get the self_deck ids of all the cards of the note with other_note_id
         # (one note can have multiple cards in different decks)
         other_deck_ids = mw.col.db.list("select did from cards where nid = ?", other_note_id)
         logger.debug("other_deck_ids {}".format(other_deck_ids))
