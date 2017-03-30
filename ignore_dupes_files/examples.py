@@ -11,6 +11,7 @@ def ignore_ch4noyu(deck1, deck2):
     if not deck1 == deck2:
         return True     # ignore
 
+
 def ignore_same_deck(deck1, deck2):
     """ Ignores duplicates from different decks. """
 
@@ -46,14 +47,10 @@ def ignore_nothing(deck1, deck2):
     return False     # ignore
 
 
-def flag_all(deck1, deck2):
-    """ Setting ignore_duplicates to this function
-    will cause Anki to flag all duplicates (ignore no duplicates). """
-    return False    # flag
-
-
-def same_group(deck1, deck2):
-    """ Checks if the group of the decks is the same. """
+def ignore_same_group(deck1, deck2):
+    """ Ignore duplicates if they belong to decks which belong to a different
+    deck group (i.e. card A belongs to deck deck::subdeck, card B belongs
+    to deck other_deck::other_subdeck."""
 
     group1 = ""
     if "::" in deck1:
@@ -64,6 +61,6 @@ def same_group(deck1, deck2):
         group2 = deck1.split("::")[0]
 
     if group1 == group2:
-        return True
+        return False    # same group => do not ignore
     else:
-        return False
+        return False    # different group => ignore
