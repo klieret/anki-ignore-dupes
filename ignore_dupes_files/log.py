@@ -11,7 +11,7 @@ logger.setLevel(logging.DEBUG)
 formatter = logging.Formatter('IgnoreDupes:%(levelname)s:%(message)s')
 
 sh_info = logging.StreamHandler(stream=sys.stdout)
-sh_info.setLevel(logging.WARNING)
+sh_info.setLevel(logging.DEBUG)
 sh_info.setFormatter(formatter)
 
 # will be caught by anki and displayed in a
@@ -30,5 +30,5 @@ logger.addHandler(fh)
 logger.addHandler(sh_error)
 logger.addHandler(sh_info)
 
-logger.info("Plugin 'ignore_dupes' active. Some duplicated card warnings may be surpressed.")
-logger.debug("Log will be saved at {}".format(os.path.abspath(log_path)))
+logger.warning("Plugin 'ignore_dupes' active. Some duplicated card warnings may be surpressed.")
+logger.warning("Verbose Log will be saved at {}".format(os.path.abspath(log_path)))
