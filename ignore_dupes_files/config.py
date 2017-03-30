@@ -13,5 +13,7 @@ from examples import *
 # E.g. set
 #   ignore_duplicates = ignore_all
 # to ignore all duplicates.
+# You can also add your own function to the file examples.py and then set it
+# in here.
 
 ignore_duplicates = ignore_nothing
