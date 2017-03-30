@@ -1,3 +1,3 @@
 #!/bin/sh
 
-zip ignore_dupes.zip ignore_dupes.py ignore_dupes_files 
+zip -r ignore_dupes.zip ignore_dupes_files ignore_dupes.py
