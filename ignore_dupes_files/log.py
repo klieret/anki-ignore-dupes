@@ -11,7 +11,7 @@ logger.setLevel(logging.DEBUG)
 formatter = logging.Formatter('IgnoreDupes:%(levelname)s:%(message)s')
 
 sh_info = logging.StreamHandler(stream=sys.stdout)
-sh_info.setLevel(logging.DEBUG)
+sh_info.setLevel(logging.WARNING)
 sh_info.setFormatter(formatter)
 
 # will be caught by anki and displayed in a
