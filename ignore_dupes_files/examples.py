@@ -40,6 +40,12 @@ def ignore_all(deck1, deck2):
     return True     # ignore
 
 
+def ignore_nothing(deck1, deck2):
+    """ Setting ignore_duplicates to this function
+    will cause Anki to completely ignore all duplicates. """
+    return False     # ignore
+
+
 def flag_all(deck1, deck2):
     """ Setting ignore_duplicates to this function
     will cause Anki to flag all duplicates (ignore no duplicates). """
