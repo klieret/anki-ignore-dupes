@@ -17,19 +17,21 @@ With this addon the function that checks for duplicates can be tweaked to ignore
 
 ## Installation 
 
-1. Via the Anki interface. Main Window: ```Tools``` > ```Addons``` > ```Browse & Install...```, then enter the code ```1919904593``` in the pop up window.
-    ![anki interface](https://cloud.githubusercontent.com/assets/13602468/24506940/6d3a1d42-155f-11e7-8d7c-fd99f074953f.png)
+1. **Via the Anki interface** (this might not be the newest version!) Main Window: ```Tools``` > ```Addons``` > ```Browse & Install...```, then enter the code ```1919904593``` in the pop up window.
 
-2. Manually. Click here [here](https://github.com/klieret/anki-ignore-dupes/archive/master.zip) to download the newest version of this addon as a ZIP file, then move the contents of the ZIP folder (the file ```ignore_dupes.py``` and the folder ```ignore_dupes_files```) to the ```addon``` subfolder of your Anki directory. 
+   ![anki interface](https://cloud.githubusercontent.com/assets/13602468/24506940/6d3a1d42-155f-11e7-8d7c-fd99f074953f.png)
 
-    E.g. Linux: ```~/Documents/Anki/addons```, Windows ```<path to your account>/Documents/Anki/addons```.
+2. **Manually**. Click here [here](https://github.com/klieret/anki-ignore-dupes/archive/master.zip) to download the newest version of this addon as a ZIP file, then move the contents of the ZIP folder (the file ```ignore_dupes.py``` and the folder ```ignore_dupes_files```) to the ```addon``` subfolder of your Anki directory. 
+
+   E.g. Linux: ```~/Documents/Anki/addons```, Windows ```<path to your account>/Documents/Anki/addons```.
 
 ## Uninstallation
 
-1. Via the Anki interface. Main Window: ```Tools``` > ```Addons``` > ```ignore_dupes``` > ```Delete```.
-  ![anki interface](https://cloud.githubusercontent.com/assets/13602468/24505076/e39723ce-1558-11e7-9f3c-e379f6321a55.png)
+1. **Via the Anki interface**. Main Window: ```Tools``` > ```Addons``` > ```ignore_dupes``` > ```Delete```.
 
-2. Manually: Delete the file ```ignore_dupes.py``` and the folder ```ignore_dupes_files``` from your addon folder.
+   ![anki interface](https://cloud.githubusercontent.com/assets/13602468/24505076/e39723ce-1558-11e7-9f3c-e379f6321a55.png)
+
+2. **Manually**: Delete the file ```ignore_dupes.py``` and the folder ```ignore_dupes_files``` from your addon folder.
 
 ## The Log
 
