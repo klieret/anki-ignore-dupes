@@ -3,14 +3,15 @@
 
 from examples import *
 
-
-def ignore_duplicates(deck1, deck2):
-    """ Having 2 cards from deck1 (original deck) and deck2 
-    (deck of a note which normally would be flagged as a duplicate) 
-    this function should be modified to return True if we want to ignore 
-    this duplicate and False if we want to flag the duplicate. """
-
-    return False
+# Define the function ignore_duplicates to choose which duplicates should be
+# ignored.
+# Default:
+#   ignore_duplicates = ignore_nothing
+# (this does not ignore any duplicates)
+# A lot of examples of how to ignore certain duplicates are given in the file
+# examples.py (in this directory).
+# E.g. set
+#   ignore_duplicates = ignore_all
+# to ignore all duplicates.
 
 ignore_duplicates = ignore_nothing
-
