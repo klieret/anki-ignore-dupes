@@ -11,13 +11,14 @@ from util import dname_from_did, did_from_dname, split_multiple_delims
 def expression_dupe(expression, deck=None):
     """ Checks if there is already a card with the Expresssion $expression.
     :type expression: str
+    :param deck: The deck to which the expression will belong. (Else set automatically)
     """
     # wrapper around _ignore_dupes
     # if word contains multiple expressions, separated by ',', '・' or similar
     # we check for each of them
     delims = [u',', u';', u'、', u'；', u'\n', u'・']
     for expr in split_multiple_delims(expression, delims):
-        if _ignore_dupes(self_expression=expr, self_deck=None) == 2:
+        if _ignore_dupes(self_expression=expr, self_deck=deck) == 2:
             # duplicate!
             return True
     return False  # nice note
