@@ -1,6 +1,6 @@
 # Anki Addon: Ignore Dupes
 
-Plugin for [Anki](https://apps.ankiweb.net/), a spaced repetition flashcard program.
+Plugin for [Anki](https://apps.ankiweb.net/), a spaced repetition flashcard program. [Plugin page on akiweb.](https://ankiweb.net/shared/info/1919904593)
 
 ## Duplicates in Anki
 
@@ -17,9 +17,12 @@ With this addon the function that checks for duplicates can be tweaked to ignore
 
 ## Installation 
 
-Click here [here](https://github.com/klieret/anki-ignore-dupes/archive/master.zip) to download the newest version of this addon as a ZIP file, then move the contents of the ZIP folder (the file ```ignore_dupes.py``` and the folder ```ignore_dupes_files```) to the ```addon``` subfolder of your Anki directory. 
+1. Via the Anki interface. Main Window: ```Tools``` > ```Addons``` > ```Browse & Install...```, then enter the code ```1919904593``` in the pop up window.
+    ![anki interface](https://cloud.githubusercontent.com/assets/13602468/24506940/6d3a1d42-155f-11e7-8d7c-fd99f074953f.png)
 
-E.g. Linux: ```~/Documents/Anki/addons```, Windows ```<path to your account>/Documents/Anki/addons```.
+2. Manually. Click here [here](https://github.com/klieret/anki-ignore-dupes/archive/master.zip) to download the newest version of this addon as a ZIP file, then move the contents of the ZIP folder (the file ```ignore_dupes.py``` and the folder ```ignore_dupes_files```) to the ```addon``` subfolder of your Anki directory. 
+
+    E.g. Linux: ```~/Documents/Anki/addons```, Windows ```<path to your account>/Documents/Anki/addons```.
 
 ## Uninstallation
 
