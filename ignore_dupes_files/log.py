@@ -30,5 +30,7 @@ logger.addHandler(fh)
 logger.addHandler(sh_error)
 logger.addHandler(sh_info)
 
-logger.warning("Plugin 'ignore_dupes' active. Some duplicated card warnings may be surpressed.")
-logger.warning("Verbose Log will be saved at {}".format(os.path.abspath(log_path)))
+logger.warning("Plugin 'ignore_dupes' active. Some duplicated card warnings "
+               "may be surpressed.")
+logger.warning("Verbose Log will be saved at {}".format(
+    os.path.abspath(log_path)))
