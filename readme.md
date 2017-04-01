@@ -35,7 +35,9 @@ With this addon the function that checks for duplicates can be tweaked to ignore
 
 ## The Log
 
-For debugging purposes, this addon generates a log in the folder ```ignore_dupes_files``` (which you just moved into the addon folder), called ```ignore_dupes.log```. The contents look something like this:
+For debugging purposes, this addon generates a log in the folder ```ignore_dupes_files``` (which you just moved into the addon folder), called ```ignore_dupes.log```. 
+
+If the logging level is set to ```DEBUG```, the contents look something like this:
 
     IgnoreDupes:INFO:Plugin 'ignore_dupes' active. Some duplicated card warnings may be surpressed.
     IgnoreDupes:DEBUG:Log will be saved at /home/fuchur/Documents/Anki/addons/ignore_dupes_files/ignore_dupes.log
@@ -54,6 +56,19 @@ For debugging purposes, this addon generates a log in the folder ```ignore_dupes
     IgnoreDupes:DEBUG:Duplicate! deck1 = 'JA::VOCAB::vocab_new', deck2 = 'JA::VOCAB' ==> Ignored.
     
 If you run Anki from the command line, the first two lines will also always be displayed.
+
+You can adjust the debug levels in the file ```log.py```. Available levels are ```DEBUG```, ```INFO```, ```WARNING```, ```ERROR``` and ```CRITICAL```. The relevant lines are:
+
+```python
+logger.setLevel(logging.INFO)     # which log messages are recorded at all
+                                  # (overall log level)
+sh_info.setLevel(logging.INFO)    # which log messages are displayed in the command line
+sh_error.setLevel(logging.ERROR)  # which log messages cause anki to display 
+                                  # a warning message
+fh.setLevel(logging.DEBUG)        # which log messages are written to the log file
+```
+
+by default the overall logging level is set to ```INFO```, not ```DEBUG``` as this performs etter. Thus, for more detailed information, simply replace the line ```logger.setLevel(logging.INFO)``` with ```logger.setLevel(logging.DEBUG)``` and the log file will contain all debug information.
 
 ## Customization
 

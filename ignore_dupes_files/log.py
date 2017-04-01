@@ -6,12 +6,12 @@ import os.path
 import sys
 
 logger = logging.getLogger('ignore_dupes_logging')
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 formatter = logging.Formatter('IgnoreDupes:%(levelname)s:%(message)s')
 
 sh_info = logging.StreamHandler(stream=sys.stdout)
-sh_info.setLevel(logging.DEBUG)
+sh_info.setLevel(logging.INFO)
 sh_info.setFormatter(formatter)
 
 # will be caught by anki and displayed in a
