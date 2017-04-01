@@ -1,0 +1,7 @@
+push.sh
+nosync/**
+.idea/**
+untracked/**
+old_versions.tar
+readme_files/**
+ignore_dupes.zip
