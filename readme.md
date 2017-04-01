@@ -91,3 +91,7 @@ ignore_duplicates = ignore_same_deck
 ```
     
 in the file ```config.py```.
+
+## License
+
+The contents of this repository are licensed under the [*AGPL3* license](https://choosealicense.com/licenses/agpl-3.0/) (to be compatible with the license of Anki and its addons as detailed [here](https://ankiweb.net/account/terms)).
