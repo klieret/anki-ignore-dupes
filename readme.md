@@ -1,5 +1,7 @@
 # Anki Addon: Ignore Dupes
 
+**[Overview over my other Anki add-ons](http://www.lieret.net/opensource/#anki)**
+
 Plugin for [Anki](https://apps.ankiweb.net/), a spaced repetition flashcard program. [Plugin page on akiweb.](https://ankiweb.net/shared/info/1919904593)
 
 ## Duplicates in Anki
